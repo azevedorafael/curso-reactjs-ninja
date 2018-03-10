@@ -18,5 +18,9 @@
   "dependencies": {
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
-  }
+  },
+  "name": "learning-props",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }
