@@ -1,7 +1,7 @@
 import React from 'react'
 
 //Component rendering with Pure Function
-const Title = ({name, lastName}) => (
+const Title = ({ name, lastName }) => (
   <h1>Olá {`${name} ${lastName}`}</h1>
 )
 
@@ -10,7 +10,7 @@ Title.defaultProps = {
   lastName: 'Sem sobrenome'
 }
 
-  //Component classic rendering
+//Component classic rendering
 // const Title = React.createClass({
 //   getDefaultProps: function () {
 //     return {
