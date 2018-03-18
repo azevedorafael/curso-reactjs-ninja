@@ -5,6 +5,7 @@ import Title from './title'
 import Square from './square'
 import LikeButton from './like-button'
 import SearchButton from './search-button'
+import StateExample1 from './state-example1'
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
 
         <LikeButton />
         <SearchButton />
+        <StateExample1 />
       </div>
     )
   }
