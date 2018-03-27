@@ -52,6 +52,9 @@ class App extends Component {
         </select>
 
 
+      <textarea defaultValue={'bla\nbla\nbla'} />
+
+
         </form >
       </div>
     )
