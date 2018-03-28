@@ -1,78 +1,48 @@
 'use strict'
 
 import React, { Component } from 'react'
-import ajax from '@fdaciuk/ajax'
-import AppContent from './components/app-content'
 
-class App extends Component {
-  constructor () {
-    super()
-    this.state = {
-      userinfo: null,
-      repos: [],
-      starred: [],
-      isFetching: false
-    }
+const App = () => (
+  <div className='app'>
 
-    this.handleSearch = this.handleSearch.bind(this)
-  }
+    <div className='search'>
+      <input type='search' placeholder='Digite o nome do usuário no GitHub'/>
+    </div>
 
-  getGitHubApiUrl (username, type) {
-    const internalUser = username ? `/${username}` : ''
-    const internalType = type ? `/${type}` : ''
-    return `https://api.github.com/users${internalUser}${internalType}`
-  }
+    <div className='user-info'>
+      <img src='https://avatars2.githubusercontent.com/u/15950775?v=4' />
+      <h1>
+        <a href='https://github.com/azevedorafael' >Rafael Azevedo</a>
+      </h1>
 
-  handleSearch (e) {
-    const value = e.target.value
-    const keyCode = e.which || e.keyCode
-    const ENTER = 13
+      <ul className='repos-info'>
+        <li>- Repositórios: 122</li>
+        <li>- Seguidores: 19</li>
+        <li>- Seguindo: 10</li>
+      </ul>
 
-    if (keyCode === ENTER) {
-      this.setState({ isFetching: true })
+      <div className='actions'>
+        <button>Ver repositórios</button>
+        <button>Ver favoritos</button>
+      </div>
 
-      ajax().get(this.getGitHubApiUrl(value))
-      .then((result) => {
-        this.setState({
-          userinfo: {
-            username: result.name,
-            photo: result.avatar_url,
-            login: result.login,
-            repos: result.public_repos,
-            followers: result.followers,
-            following: result.following
-          },
-          repos: [],
-          starred: []
-        })
-      })
-      .always(() => this.setState({ isFetching: false }))
-    }
-  }
+      <div className='repos'>
+        <h2>Repositórios:</h2>
+        <ul>
+          <li><a href='#'>Nome do repositório</a></li>
+        </ul>
+      </div>
 
-  getRepos (type) {
-    return (e) => {
-      const username = this.state.userinfo.login
-      ajax().get(this.getGitHubApiUrl(username, type))
-        .then((result) => {
-          this.setState({
-            [type]: result.map((repo) => ({
-              name: repo.name,
-              link: repo.html_url
-            }))
-          })
-        })
-    }
-  }
+      <div className='starred'>
+        <h2>Favoritos:</h2>
+        <ul>
+          <li><a href='#'>Nome do repositório</a></li>
+        </ul>
+      </div>
 
-  render () {
-    return <AppContent
-      {...this.state}
-      handleSearch={this.handleSearch}
-      getRepos={this.getRepos('repos')}
-      getStarred={this.getRepos('starred')}
-    />
-  }
-}
+    </div>
+  </div>
+)
+
 
 export default App
