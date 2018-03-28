@@ -7,7 +7,8 @@ class App extends Component {
     super()
     this.state = {
       checked: false,
-      value: '2'
+      value: '2',
+      showContent: false
     }
   }
   render() {
@@ -52,7 +53,7 @@ class App extends Component {
 
           <input type='radio' name='rd' value='1' /> Radio 1
         <input type='radio' name='rd' value='1' defaultChecked /> Radio 1
-  
+
         <select multiple value={this.state.value} onChange={(e) => {
             this.setState({
               value: e.target.value
@@ -69,7 +70,20 @@ class App extends Component {
 
           <input type='checkbox' onClick={(e) => console.log(e.target.value)} />
 
+          <label>
+          <input type='checkbox' checked={this.state.checked}  onChange={() => {
+              this.setState({
+                checked: !this.state.checked,
+              },() => {
+                this.setState({
+                  showContent: this.state.checked
+                })
+              })
+          }} />
+            Show content
+          </label>
 
+          {this.state.showContent && <div>Short circuit validation</div>}
 
           <button type='submit'>Enviar</button>
 
